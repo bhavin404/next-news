@@ -1,4 +1,6 @@
 .navbar{
+    position: fixed;
+      width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -28,4 +30,5 @@
   .navflex li:hover{
       background: rgb(34, 30, 30);
       color: #fff;
+      cursor: pointer;
   }

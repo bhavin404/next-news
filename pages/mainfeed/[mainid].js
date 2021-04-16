@@ -2,17 +2,17 @@ import React from 'react'
 import Nav from '../../components/nav'
 import { useRouter } from 'next/router'
 
-const feed = ({ pageNumber, articles }) => {
-    console.log(pageNumber);
-
+const mainfeed = ({articles,pageNumber}) => {
+    console.log(articles);
     const router = useRouter();
+
     return (
-        <>
+<>
             <Nav />
             <div className="container1">
 
                 <div className="center">
-                    <h1>WELCOME TO GLOBAL NEWS</h1>
+                    <h1>WELCOME TO INDIAN NEWS</h1>
                     {articles.map((article, index) => (
                         <div className="box" key={index} onClick={() => (window.location.href = article.url)}  >
                             <div className="title">
@@ -55,40 +55,34 @@ const feed = ({ pageNumber, articles }) => {
         </>
     )
 }
-
 export const getServerSideProps = async pageContext => {
+    const pageNumber = pageContext.query.mainid;
 
-    const pageNumber = pageContext.query.slug;
-
-    if (!pageNumber || pageNumber < 1 || pageNumber > 10) {
+    if (!pageNumber || pageNumber < 1 || pageNumber > 5) {
         return {
             props: {
-                article: [],
+                articles: [],
                 pageNumber: 1
             }
         }
     }
 
-    const apiReference = await fetch(`https://newsapi.org/v2/top-headlines?country=us&pageSize=5&page=${pageNumber}`,
-        {
-            headers: {
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY}`
-            }
-        })
+    const apiRef = await fetch(`https://newsapi.org/v2/top-headlines?country=in&pageSize=5&page=${pageNumber}`, {
+        headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY}`
+        }
+    })
 
-    const data = await apiReference.json()
+    const data = await apiRef.json()
 
-    console.log(data);
+    const {articles} =data
 
-    const { articles } = data
-    return {
-        props: {
+    return{
+        props:{
             articles,
             pageNumber: Number.parseInt(pageNumber)
         }
     }
-
-
 }
 
-export default feed
+export default mainfeed

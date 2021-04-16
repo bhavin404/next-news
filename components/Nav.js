@@ -11,6 +11,8 @@ const Nav = () => {
 
     }
 
+    
+
     const Router = useRouter()
 
     return (
@@ -22,8 +24,8 @@ const Nav = () => {
 
             <ul className={style.navflex}>
                 <li onClick={() =>Router.push('/')}>Home</li>
-                <li onClick={() =>Router.push('/feed/1')}>Global News</li>
-                <li onClick={() =>Router.push('/')}>Indian News</li>
+                <li onClick={() =>{Router.push('/feed/1') }}>Global News</li>
+                <li onClick={() =>Router.push('/mainfeed/1')}>Indian News</li>
                 <li onClick={() =>window.location.href='https://instagram.com/_bha_win'}>Contact us</li>
 
             </ul>

@@ -18,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Hello welcome to the next-news</h1>
+      <h1>welcome to the next-news</h1>
       <h3>Click on the news you want.</h3>
     </div>
     </>
